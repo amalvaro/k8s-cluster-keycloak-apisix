@@ -1,0 +1,18 @@
+auth:
+  adminUser: admin
+  adminPassword: admin123
+proxyAddressForwarding: true
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostname: keycloak.local
+  pathType: Prefix
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  tls: false
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: keycloak
+    password: keycloak

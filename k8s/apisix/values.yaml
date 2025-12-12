@@ -1,0 +1,41 @@
+global:
+  imagePullPolicy: IfNotPresent
+etcd:
+  enabled: true
+  replicaCount: 1
+  persistence:
+    enabled: false
+  service:
+    type: ClusterIP
+    ports:
+      client: 2379
+      peer: 2380
+apisix:
+  replicaCount: 1
+  enableIPv6: false
+  admin:
+    enabled: true
+    allow:
+      ipList:
+        - 0.0.0.0/0
+    admin_key:
+      - name: admin
+        key: "edd1c9f034335f136f87ad84b625c8f1"
+        role: admin
+gateway:
+  type: NodePort
+  http:
+    enabled: true
+    servicePort: 80
+    containerPort: 9080
+    nodePort: 30090
+  tls:
+    enabled: true
+    servicePort: 443
+    containerPort: 9443
+    nodePort: 30444
+  stream:
+    enabled: false
+  exposeAdmin: true
+metrics:
+  enabled: false

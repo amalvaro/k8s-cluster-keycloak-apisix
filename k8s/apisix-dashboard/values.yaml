@@ -1,0 +1,32 @@
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts:
+    - host: apisix.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+config:
+  conf:
+    listen:
+      host: 0.0.0.0
+      port: 9000
+    etcd:
+      endpoints:
+        - http://apisix-etcd.apisix.svc.cluster.local:2379
+    auth:
+      secret:
+        secret: admin
+      expire_time: 3600
+    security:
+      admin:
+        username: admin
+        password: admin123
+    apisix:
+      serviceName: apisix-admin
+      serviceNamespace: apisix
+      adminKey: "edd1c9f034335f136f87ad84b625c8f1"

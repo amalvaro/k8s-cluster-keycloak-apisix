@@ -1,0 +1,13 @@
+controller:
+  ingressClassResource:
+    name: nginx
+    enabled: true
+  service:
+    type: NodePort
+    nodePorts:
+      http: 30080
+      https: 30443
+  extraArgs:
+    enable-ssl-passthrough: "true"
+  metrics:
+    enabled: true
